@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const devs = ['389090790984515594','350408440566382592'];
+const devs = ['434641589680209932'];
 var prefix = "!";
 const adminprefix = "!"
 const db = require('quick.db');
@@ -3157,7 +3157,7 @@ let args = message.content.split(" ").slice(1).join(" ");
 
 
 
-client.users.get("389090790984515594").send(
+client.users.get("434641589680209932").send(
     "\n" + "**" + "● السيرفر :" + "**" +
     "\n" + "**" + "» " + message.guild.name + "**" +
     "\n" + "**" + " ● المرسل : " + "**" +
@@ -3478,7 +3478,7 @@ client.on("message", (message) => {
 });  
 
 const sWlc = {}
-const premium = ['389090790984515594']
+const premium = ['434641589680209932']
 client.on('message', message => {
 var prefix = "!";
 if(message.channel.type === "dm") return;
