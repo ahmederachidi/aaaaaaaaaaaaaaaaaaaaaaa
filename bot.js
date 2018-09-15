@@ -1829,14 +1829,72 @@ client.on("message", message => {
     });
 
 
+
 client.on('message', message => {
-    if(message.content == ('^profile')) {    
+	var prefix = "!";
+if(!message.channel.guild) return;
+if(message.content.startsWith(prefix + 'move')) {
+ if (message.member.hasPermission("MOVE_MEMBERS")) {
+ if (message.mentions.users.size === 0) {
+ return message.channel.send("``لاستخدام الأمر اكتب هذه الأمر : " +prefix+ "move [USER]``")
+}
+if (message.member.voiceChannel != null) {
+ if (message.mentions.members.first().voiceChannel != null) {
+ var authorchannel = message.member.voiceChannelID;
+ var usermentioned = message.mentions.members.first().id;
+var embed = new Discord.RichEmbed()
+ .setTitle("Succes!")
+ .setColor("#000000")
+ .setDescription(`لقد قمت بسحب <@${usermentioned}> الى الروم الصوتي الخاص بك✅ `)
+var embed = new Discord.RichEmbed()
+.setTitle(`You are Moved in ${message.guild.name}`)
+ .setColor("RANDOM")
+.setDescription(`**<@${message.author.id}> Moved You To His Channel!\nServer --> ${message.guild.name}**`)
+ message.guild.members.get(usermentioned).setVoiceChannel(authorchannel).then(m => message.channel.send(embed))
+message.guild.members.get(usermentioned).send(embed)
+} else {
+message.channel.send("``لا تستطيع سحب "+ message.mentions.members.first() +" `يجب ان يكون هذه العضو في روم صوتي`")
+}
+} else {
+ message.channel.send("**``يجب ان تكون في روم صوتي لكي تقوم بسحب العضو أليك``**")
+}
+} else {
+message.react("❌")
+ }}});
+
+ client.on('message', message => {
+              if (!message.channel.guild) return;
+      if(message.content =='!count')
+      var IzRo = new Discord.RichEmbed()
+      .setThumbnail(message.author.avatarURL)
+      .setFooter(message.author.username, message.author.avatarURL)
+      .setTitle(':tulip:| Members info')
+      .addBlankField(true)
+      .addField('عدد اعضاء السيرفر',`${message.guild.memberCount}`)
+      message.channel.send(IzRo);
+    });
+
+client.on('message', message => {
+if(message.content === `${prefix}voiceonline`) {
+  message.guild.createChannel(`Voice Online : ${message.guild.members.filter(g => g.voiceChannel).size} ` , "voice").then(c => {
+   c.overwritePermissions(message.guild.id, {CONNECT: false});
+    message.channel.send(`**Voice Online : ${message.guild.members.filter(g => g.voiceChannel).size}**`);
+    setInterval(() => {
+    c.setName(`Voice Online : ${message.guild.members.filter(g => g.voiceChannel).size} `)
+    },1000);
+  })
+
+}
+});
+
+client.on('message', message => {
+    if(message.content == ('!profile')) {    
  
              if (message.channel.type === 'dm') return message.reply('This Command Is Not Avaible In Dm\'s :x:');   
             var Canvas = module.require('canvas');
             var jimp = module.require('jimp');
     
-     const w = ['./img/ID1.png','./img/ID2.png','./img/ID3.png','./img/ID4.png','./img/ID5.png'];
+     const w = ['ID1.png','ID2.png','ID3.png','ID4.png','ID5.png'];
     
              let Image = Canvas.Image,
                  canvas = new Canvas(802, 404),
@@ -1916,13 +1974,13 @@ client.on('message', message => {
                             
                                                        let status;
      if (getvalueof.presence.status === 'online') {
-         status = 'اون لاين';
+         status = 'Online';
      } else if (getvalueof.presence.status === 'dnd') {
-         status = 'مشغول';
+         status = 'dnd';
      } else if (getvalueof.presence.status === 'idle') {
-         status = 'خارج النطاق';
+         status = 'idle';
      } else if (getvalueof.presence.status === 'offline') {
-         status = 'اوف لاين';
+         status = 'offline';
      }
      
      
@@ -1934,7 +1992,7 @@ client.on('message', message => {
                                                                    ctx.font = 'regular 30px Cairo';
                                                                    ctx.fontSize = '30px';
                                                                    ctx.fillStyle = '#ffffff'
-                                                         ctx.fillText(`${h.presence.game === null ? "لا يلعب" : h.presence.game.name}`,390,390);
+                                                         ctx.fillText(`${h.presence.game === null ? "No playing" : h.presence.game.name}`,390,390);
                             
                                ctx.font = '35px Arial';
                                                                    ctx.fontSize = '30px';
@@ -1953,63 +2011,6 @@ client.on('message', message => {
                              })
  }
  });
-
-client.on('message', message => {
-	var prefix = "!";
-if(!message.channel.guild) return;
-if(message.content.startsWith(prefix + 'move')) {
- if (message.member.hasPermission("MOVE_MEMBERS")) {
- if (message.mentions.users.size === 0) {
- return message.channel.send("``لاستخدام الأمر اكتب هذه الأمر : " +prefix+ "move [USER]``")
-}
-if (message.member.voiceChannel != null) {
- if (message.mentions.members.first().voiceChannel != null) {
- var authorchannel = message.member.voiceChannelID;
- var usermentioned = message.mentions.members.first().id;
-var embed = new Discord.RichEmbed()
- .setTitle("Succes!")
- .setColor("#000000")
- .setDescription(`لقد قمت بسحب <@${usermentioned}> الى الروم الصوتي الخاص بك✅ `)
-var embed = new Discord.RichEmbed()
-.setTitle(`You are Moved in ${message.guild.name}`)
- .setColor("RANDOM")
-.setDescription(`**<@${message.author.id}> Moved You To His Channel!\nServer --> ${message.guild.name}**`)
- message.guild.members.get(usermentioned).setVoiceChannel(authorchannel).then(m => message.channel.send(embed))
-message.guild.members.get(usermentioned).send(embed)
-} else {
-message.channel.send("``لا تستطيع سحب "+ message.mentions.members.first() +" `يجب ان يكون هذه العضو في روم صوتي`")
-}
-} else {
- message.channel.send("**``يجب ان تكون في روم صوتي لكي تقوم بسحب العضو أليك``**")
-}
-} else {
-message.react("❌")
- }}});
-
- client.on('message', message => {
-              if (!message.channel.guild) return;
-      if(message.content =='!count')
-      var IzRo = new Discord.RichEmbed()
-      .setThumbnail(message.author.avatarURL)
-      .setFooter(message.author.username, message.author.avatarURL)
-      .setTitle(':tulip:| Members info')
-      .addBlankField(true)
-      .addField('عدد اعضاء السيرفر',`${message.guild.memberCount}`)
-      message.channel.send(IzRo);
-    });
-
-client.on('message', message => {
-if(message.content === `${prefix}voiceonline`) {
-  message.guild.createChannel(`Voice Online : ${message.guild.members.filter(g => g.voiceChannel).size} ` , "voice").then(c => {
-   c.overwritePermissions(message.guild.id, {CONNECT: false});
-    message.channel.send(`**Voice Online : ${message.guild.members.filter(g => g.voiceChannel).size}**`);
-    setInterval(() => {
-    c.setName(`Voice Online : ${message.guild.members.filter(g => g.voiceChannel).size} `)
-    },1000);
-  })
-
-}
-});
 
 
 client.on("message", async message => {
