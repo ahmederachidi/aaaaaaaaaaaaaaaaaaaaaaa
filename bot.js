@@ -83,58 +83,88 @@ client.on ("guildMemberRemove", member => {
 
 
 
-client.on('messageDelete', msg => {
-    if (msg.channel.type !== "text") return
-    if (msg.channel.topic && msg.channel.topic.includes("hano-modlog")) return;
-    exports.fire(`**#${msg.channel.name} | ${msg.author.tag}'s message was deleted:** \`${msg.content}\``, msg.guild)
+client.on('message', message => {
+sql.open("./score.sqlite");
+  sql.get(`SELECT * FROM scores WHERE userId ="${message.author.id}"`).then(row => {
+    if (!row) {
+      sql.run("INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+    } else {
+      let curLevel = Math.floor(0.3 * Math.sqrt(row.points + 1));
+      if (curLevel > row.level) {
+        row.level = curLevel;
+        sql.run(`UPDATE scores SET points = ${row.points + 1}, level = ${row.level} WHERE userId = ${message.author.id}`);
+var Canvas = require('canvas')
+var jimp = require('jimp')
+
+const w = ['./levelup.png'];
+
+        let Image = Canvas.Image,
+            canvas = new Canvas(401, 202),
+            ctx = canvas.getContext('2d');
+        ctx.patternQuality = 'bilinear';
+        ctx.filter = 'bilinear';
+        ctx.antialias = 'subpixel';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+        ctx.shadowOffsetY = 2;
+        ctx.shadowBlur = 2;
+        fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+            if (err) return console.log(err);
+            let BG = Canvas.Image;
+            let ground = new Image;
+            ground.src = Background;
+            ctx.drawImage(ground, 0, 0, 401, 202);
+
 })
- 
-client.on('messageUpdate', (msg, newMsg) => {
-    if (msg.content === newMsg.content) return
-    exports.fire(`**#${msg.channel.name} | ${msg.author.tag} edited their message:**\n**before:** \`${msg.content}\`\n**+after:** \`${newMsg.content}\``, msg.guild)
+
+                let url = message.author.displayAvatarURL.endsWith(".webp") ? message.author.displayAvatarURL.slice(5, -20) + ".png" : message.author.displayAvatarURL;
+                jimp.read(url, (err, ava) => {
+                    if (err) return console.log(err);
+                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                        if (err) return console.log(err);
+
+                        //Avatar
+                        let Avatar = Canvas.Image;
+                        let ava = new Avatar;
+                        ava.src = buf;
+                        ctx.drawImage(ava, 152, 27, 95, 95);
+                        
+                                                //wl
+                        ctx.font = '20px Arial';
+                        ctx.fontSize = '25px';
+                        ctx.fillStyle = "#b2b4b7";
+                        ctx.textAlign = "center";
+                        ctx.fillText("LEVEL UP!", 210, 154);
+                        //ur name
+                        ctx.font = '20px Arial Bold';
+                        ctx.fontSize = '28px';
+                        ctx.fillStyle = "#8b8d91";
+                        ctx.textAlign = "center";
+                        ctx.fillText(`LVL ${curLevel}`, 213, 190);
+message.channel.send(`**:up: | ${message.author.username} leveled up!**`)
+message.channel.sendFile(canvas.toBuffer())
 })
- 
-client.on('guildMemberUpdate', (old, nw) => {
-    let txt
-    if (old.roles.size !== nw.roles.size) {
-        if (old.roles.size > nw.roles.size) {
-            //Taken
-            let dif = old.roles.filter(r => !nw.roles.has(r.id)).first()
-            txt = `**${nw.user.tag} | Role taken -> \`${dif.name}\`**`
-        } else if (old.roles.size < nw.roles.size) {
-            //Given
-            let dif = nw.roles.filter(r => !old.roles.has(r.id)).first()
-            txt = `**${nw.user.tag} | Role given -> \`${dif.name}\`**`
-        }
-    } else if (old.nickname !== nw.nickname) {
-        txt = `**${nw.user.tag} | Changed their nickname to -> \`${nw.nickname}\`**`
-    } else return
-    exports.fire(txt, nw.guild)
 })
- 
-client.on('roleCreate', (role) => {
-    exports.fire("**New role created**", role.guild)
-})
- 
-client.on('roleDelete', (role) => {
-    exports.fire("**Role deleted -> `" + role.name + "`**", role.guild)
-})
- 
-client.on('roleUpdate', (old, nw) => {
-    let txt
-    if (old.name !== nw.name) {
-        txt = `**${old.name} | Role name updated to -> \`${nw.name}\`**`
-    } else return
-    exports.fire(txt, nw.guild)
-})
- 
-client.on('guildBanAdd', (guild, user) => {
-    exports.fire(`**User banned -> \`${user.tag}\`**`, guild)
-})
- 
-client.on('guildBanRemove', (guild, user) => {
-    exports.fire(`**User unbanned -> \`${user.tag}\`**`, guild)
-})
+        
+      };
+      sql.run(`UPDATE scores SET points = ${row.points + 1} WHERE userId = ${message.author.id}`);
+    }
+  }).catch(() => {
+    console.error;
+    sql.run("CREATE TABLE IF NOT EXISTS scores (userId TEXT, points INTEGER, level INTEGER)").then(() => {
+      sql.run("INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+    });
+  });
+
+  if (message.content.startsWith(prefix + "level")) {
+    sql.get(`SELECT * FROM scores WHERE userId ="${message.author.id}"`).then(row => {
+      if (!row) return message.reply("Your current level is 0");
+      message.reply(`Your current level is ${row.level}`);
+ });
+
+
+}
+	})
+
 
 
 client.on('error', console.error);
