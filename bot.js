@@ -1195,7 +1195,7 @@ client.on('message' , message => {
   client.on('message', msg => {
     if(msg.author.bot) return;
     
-    if(msg.content === '!sr') {
+    if(msg.content === '!server') {
       client.guilds.forEach(g => {
         
         let l = g.id
@@ -2277,6 +2277,30 @@ return;
 });
 
 
+client.on('guildMemberAdd', member => {
+  member.guild.fetchInvites().then(guildInvites => {
+    const ei = invites[member.guild.id];
+    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+    const inviter = client.users.get(invite.inviter.id);
+    const stewart = member.guild.channels.find("name", "welcome");
+     stewart.send(`<@${member.user.id}> تمت الدعوه من <@${inviter.id}>`);
+   //  stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
+  }); 
+});
+
+const Discord = require('discord.js')
+client.on('message', message => {
+
+if(message.content.startsWith('!voting')) {
+    let msg = await message.channel.send("Vote!");
+  await msg.react("👍")
+
+  const reactions = await message.awaitReactions(reaction => {
+    return reaction.emoji.name === "👍", {time: 30000}
+}
+}})
+
+
 let points = {};
 const type = [
     {
@@ -2646,1179 +2670,7 @@ if (message.content.startsWith(prefix + 'perms')) {
 });
 
 
-var prefix = "$";
-client.on('message', message => {
-    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "1",
-                    color: "#cf1111",
-                    permissions: []
-     })
-	}
-});
-client.on('message', message => {
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "2",
-                    color: "#df5d11",
-                    permissions: []
-     })
-	}
-});
-client.on('message', message => {
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "3",
-                    color: "#dfab11",
-                    permissions: []
-     })
-	}
-});
-	client.on('message', message => {
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "4",
-                    color: "#dfde11",
-                    permissions: []
-     })
-	}});	
-	client.on('message', message => {
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "5",
-                    color: "#a8df11",
-                    permissions: []
-     })
-	}});	
-	client.on('message', message => {
 
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "6",
-                    color: "#64c40c",
-                    permissions: []
-     })
-	}});	
-	client.on('message', message => {
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "7",
-                    color: "#38c30c",
-                    permissions: []
-     })
-	}});	
-	client.on('message', message => {
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "8",
-                    color: "#0cc33f",
-                    permissions: []
-     })
-	}});	
-client.on('message', message => {
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "9",
-                    color: "#0cc36c",
-                    permissions: []
-     })
-}});	
-client.on('message', message => {
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "10",
-                    color: "#0cc394",
-                    permissions: []
-     })
-}});	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "11",
-                    color: "#0cc3ad",
-                    permissions: []
-     })
-	}});	
-client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "12",
-                    color: "#0cb1c3",
-                    permissions: []
-     })
-}});	
-client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "13",
-                    color: "#0c9ec3",
-                    permissions: []
-     })
-}});
-client.on('message', message => {
-	
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "14",
-                    color: "#0c8ac3",
-                    permissions: []
-     })
-}});
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "15",
-                    color: "#0c6cc3",
-                    permissions: []
-     })
-	}});
-client.on('message', message => {
-	
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "16",
-                    color: "#0c49c3",
-                    permissions: []
-     })
-}});
-client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "17",
-                    color: "#0c2bc3",
-                    permissions: []
-     })
-}});
-client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "18",
-                    color: "#150cc3",
-                    permissions: []
-     })
-}});
-	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "19",
-                    color: "#880cc3",
-                    permissions: []
-     })
-	}});	
-	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "20",
-                    color: "#b50cc3",
-                    permissions: []
-     })
-	}});	
-	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "21",
-                    color: "#c30cb8",
-                    permissions: []
-     })
-	}});	
-
-client.on('message', message => {
-	
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "22",
-                    color: "#c30c90",
-                    permissions: []
-     })
-}});
-	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "23",
-                    color: "#c30c63",
-                    permissions: []
-     })
-	}});	
-	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "24",
-                    color: "#c30c4a",
-                    permissions: []
-     })
-	}});	
-	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "25",
-                    color: "#c30c31",
-                    permissions: []
-     })
-	}});	
-
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "26",
-                    color: "#ff0000",
-                    permissions: []
-     })
-	}});
-	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "27",
-                    color: "#ff4200",
-                    permissions: []
-     })
-	}});	
-	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "28",
-                    color: "#ff6c00",
-                    permissions: []
-     })
-		}});	
-	
-client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "29",
-                    color: "#ff8f00",
-                    permissions: []
-     })
-}});	
-	
-client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "30",
-                    color: "#ffd400",
-                    permissions: []
-     })
-}});	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "31",
-                    color: "#e4ff00",
-                    permissions: []
-     })
-	}});	
-client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "32",
-                    color: "#adff00",
-                    permissions: []
-     })
-}});	
-client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "33",
-                    color: "#60ff00",
-                    permissions: []
-     })
-}});	
-	
-client.on('message', message => {
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "34",
-                    color: "#14ff00",
-                    permissions: []
-     })
-}});	
-client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "35",
-                    color: "#00ff40",
-                    permissions: []
-     })
-}});	
-client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "36",
-                    color: "#00ff8c",
-                    permissions: []
-     })
-}});	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "37",
-                    color: "#00ffc4",
-                    permissions: []
-     })
-	}});	
-client.on('message', message => {
-	
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "38",
-                    color: "#00e7ff",
-                    permissions: []
-     })
-}});	
-client.on('message', message => {
-	
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "39",
-                    color: "#009aff",
-                    permissions: []
-     })
-}});	
-	
-client.on('message', message => {
-	
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "40",
-                    color: "#0055ff",
-                    permissions: []
-     })
-}});	
-client.on('message', message => {
-	
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "41",
-                    color: "#0001ff",
-                    permissions: []
-     })
-}});	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "42",
-                    color: "#6700ff",
-                    permissions: []
-     })
-	}});	
-client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "43",
-                    color: "#ad00ff",
-                    permissions: []
-     })
-	}});	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "44",
-                    color: "#dd00ff",
-                    permissions: []
-     })
-	}});	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "45",
-                    color: "#ff00fe",
-                    permissions: []
-     })
-	}});	
-client.on('message', message => {
-	
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "46",
-                    color: "#ff00cd",
-                    permissions: []
-     })
-}});	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "47",
-                    color: "#ff0096",
-                    permissions: []
-     })
-	}});	
-client.on('message', message => {
-	
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "48",
-                    color: "#ff0057",
-                    permissions: []
-     })
-}});	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "49",
-                    color: "#ff002d",
-                    permissions: []
-     })
-	}});	
-	
-	client.on('message', message => {
-
-	    if(message.content === prefix + 'cr-colors') {
-                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
-         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
-      message.guild.createRole({
-                  name: "50",
-                    color: "#050505",
-                    permissions: []
-     })
-				
-	           message.channel.sendMessage({embed: new Discord.RichEmbed()
-     .setColor('GREEN').setAuthor(`${message.author.username}'`, message.author.avatarURL).setDescription('``جاري العمل على الالوان |✅``')
-	 });
-				
-	}});
-
-
-
-
-
-
-
-
-
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '1');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '2');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '3');
-		
-		role.delete()
-		}
-	
-	});
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '4');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '5');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '6');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '7');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '8');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '9');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '10');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '11');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '12');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '13');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '14');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '15');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '16');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '17');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '18');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '19');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '20');
-		
-		role.delete()
-		}
-	
-	});
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '21');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '22');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '23');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '24');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '25');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '26');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '27');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '28');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '29');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '30');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '31');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '32');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '33');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '34');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '35');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '36');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '37');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '38');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '39');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '40');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '41');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '42');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '43');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '44');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '45');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '46');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '47');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '48');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '49');
-		
-		role.delete()
-		}
-	
-	});
-
-	client.on('message',message => {
-		
-			let args = message.content.split(' ').slice(1);
-	if (message.content.startsWith("!del-colors")) {
-		if(!message.member.hasPermission('ADMINISTRATOR')) return
-		let role = message.guild.roles.find('name', '50');
-		
-		role.delete()
-		
-			message.channel.sendMessage({embed: new Discord.RichEmbed()
-     .setColor('RED').setAuthor(`${message.author.username}'`, message.author.avatarURL).setDescription('``جاري حذف على الالوان |✅``')});
-	}
-	});
 
 
 
@@ -9415,7 +8267,7 @@ message.member.removeRole(message.guild.roles.find("name", "100"));
 	}
   if (message.content === 'الوان') {
       if (!message.channel.guild) return;
-    message.channel.sendFile('URL-Of-colors-Img');
+    message.channel.sendFile('http://www10.0zz0.com/2018/09/06/22/456169985.png');
   }
 	
 });
@@ -9424,10 +8276,13 @@ message.member.removeRole(message.guild.roles.find("name", "100"));
 
 
 
-
-
-
-
+client.on("guildMemberAdd", member => {
+  member.createDM().then(function (channel) {
+  return channel.send(`:rose:  ولكم نورت السيرفر:rose: 
+:crown:اسم العضو  ${member}:crown:  
+انت العضو رقم ${member.guild.memberCount} `) 
+}).catch(console.error)
+})
 
 
 
@@ -10236,6 +9091,105 @@ client.on('message', message => {
     }
 });
 
+client.on('message',message => {
+         if (!message.content.startsWith(prefix)) return;
+var cont = message.content.slice(prefix.length).split(" ");
+
+  var args = cont.slice(1);
+       if (message.content.startsWith("!nick")) {
+   let nickmention = message.mentions.users.first()
+    if (message.mentions.users.size === 0) {
+        if (message.member.permissions.has("CHANGE_NICKNAME")) {
+            let nickchange = args.slice(0).join(" ");
+            if (args[0] === undefined) {
+                message.channel.send("**ضع الاسم الذي تريده**")
+                return;
+            }
+            message.guild.members.get(message.author.id).setNickname(nickchange).catch(err => {
+                message.channel.send("Error: " + err)
+                return;
+            });
+            message.channel.send("✅ **Changed your nickname to:** `" + nickchange + "`")
+            return;
+        } else {
+            message.channel.send("You don't have permission to change your username. 😕")
+            return;
+        }
+        return; 
+    }
+    if (message.member.permissions.has("MANAGE_NICKNAMES", "ADMINISTRATOR")) {
+        let nickchange = args.slice(1).join(" ");
+        if (args[0] === undefined) {
+            message.channel.send("**ضع اسم**")
+            return;
+        }
+        message.guild.members.get(nickmention.id).setNickname(nickchange).catch(err => {
+            message.channel.send("Error: " + err);
+            return;
+        });
+        message.channel.send("Nick of " + nickmention + " (" + nickmention.username + "#" + nickmention.discriminator + ") changed to: `" + nickchange + "`")
+  
+     }
+    } 
+});
+
+
+
+
+client.on('message', message => {
+    if(message.channel.type === 'dm') {
+        var guildID = '487241910889742336'; // <=============== ايدي السيرفر حقك
+        if(message.content.includes('discord.gg/')) {
+            var member = client.guilds.find(g => g.id === guildID).members.find(m => m.id === message.author.id);
+            member.ban({ reason: 'ADS In Private.' }).catch();
+        }
+    }
+});
+
+
+const moment = require("moment")
+client.on("guildMemberAdd", m => {
+    if (datediff(parseDate(moment(m.user.createdTimestamp).format('l')), parseDate(moment().format('l'))) < 35) {
+        m.ban();
+    };
+});
+function parseDate(str) {
+    var mdy = str.split('/');
+    return new Date(mdy[2], mdy[0]-1, mdy[1]);
+};
+
+function datediff(first, second) {
+    return Math.round((second-first)/(1000*60*60*24));
+};
+
+
+const arraySort = require('array-sort'),
+      table = require('table');
+
+client.on('message' , async (message) => {
+var prefix = "!";
+    if(message.content.startsWith(prefix + "top-inv")) {
+
+  let invites = await message.guild.fetchInvites();
+
+    invites = invites.array();
+
+    arraySort(invites, 'uses', { reverse: true });
+
+    let possibleInvites = [['User', 'Uses']];
+    invites.forEach(i => {
+      possibleInvites.push([i.inviter.username , i.uses]);
+    })
+    const embed = new Discord.RichEmbed()
+    .setColor(0x7289da)
+    .setTitle("دعوات السيرفر")
+    .addField(' المتصدرين' , `\`\`\`${table.table(possibleInvites)}\`\`\``)
+
+    message.channel.send(embed)
+    }
+});
+
+
 
    client.on('message', message => {
      if (message.content === "!support") {
@@ -10323,7 +9277,6 @@ const channel = sWlc[message.guild.id].channel
   }
 });
  
-
 
 client.on("guildMemberAdd", member => {
       if(!sWlc[member.guild.id]) sWlc[member.guild.id] = {
