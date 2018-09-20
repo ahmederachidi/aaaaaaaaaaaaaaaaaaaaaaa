@@ -1119,7 +1119,7 @@ coll.first().delete()
 client.on('ready', function(){
   client.user.setStatus("dnd");
     var ms = 40000 ;	
-    var setGame = ['!inv','!help'];	
+    var setGame = ['!inv','!help','By Ahmed_BlaCko'];	
     var i = -1;	
     var j = 0;	
     setInterval(function (){	
@@ -2288,7 +2288,7 @@ client.on('guildMemberAdd', member => {
   }); 
 });
 
-const Discord = require('discord.js')
+
 client.on('message', message => {
 
 if(message.content.startsWith('!voting')) {
