@@ -50,6 +50,22 @@ let color = '0xffffff'
 }
 });
 
+
+//M3a4x
+var M3a4x = {};//M3a4x
+client.on('guildMemberRemove', member => {//M3a4x
+M3a4x[member.id] = {roles: member.roles.array()};//M3a4x
+});
+//M3a4x //M3a4x //M3a4x 
+client.on('guildMemberAdd', member => {//M3a4x
+if(!M3a4x[member.user.id]) return;//M3a4x
+console.log(M3a4x[member.user.id].roles.length);//M3a4x
+for(let i = 0; i < M3a4x[member.user.id].roles.length + 1; i++) {//M3a4x
+member.addRole(M3a4x[member.user.id].roles.shift());//M3a4x
+}//M3a4x
+});//M3a4x
+
+
 client.on('message' , async (message) => {
  if (message.content.startsWith(prefix + 'w')) {
   const args = message.content.substring(prefix.length).split(' ');
