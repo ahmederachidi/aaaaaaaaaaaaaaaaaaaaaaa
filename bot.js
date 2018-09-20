@@ -84,13 +84,17 @@ message.channel.createWebhook(message.author.username, message.author.avatarURL)
 });
 
 
-const ms = require("ms");
+
+
 var user = {};
 var warn = {};
-client.on('message', async function(message) {
+
+client.on('message', function(message) {
+
     	 if (!message.channel.guild) return;
 let muteRole1 = message.guild.roles.find("name", "Muted");
      if (!muteRole1) return;
+
   if (message.author.id == client.user.id) return;
   if(JSON.stringify(user).indexOf(message.author.id) == -1) {
     user[message.author.id] = message.createdTimestamp;
@@ -98,13 +102,14 @@ let muteRole1 = message.guild.roles.find("name", "Muted");
   } else {
     if (Date.now() - user[message.author.id] < 695){
               message.author.delete
+
       if (JSON.stringify(warn).indexOf(message.author.id) == -1) {
         warn[message.author.id] = 1;
       } else {
         warn[message.author.id]++;
         message.author.delete
       }
-      if (warn[message.author.id] < 6) {
+      if (warn[message.author.id] < 4) {
         message.author.delete
 
       }
@@ -117,32 +122,18 @@ let muteRole1 = message.guild.roles.find("name", "Muted");
 
     }
   }
-  if (warn[message.author.id] == 6) {
+  if (warn[message.author.id] == 4) {		   
      if (!message.channel.guild) return;
              message.author.delete
 
 let muteRole1 = message.guild.roles.find("name", "Muted");
-if(!muteRole1) {
-        muteRole1 = await message.guild.createRole({
-          name: "Muted",
-          color: "#ffffff",
-          permissions:[]
-        })
-        message.guild.channels.forEach(async (channel, id) => {
-          await channel.overwritePermissions(muteRole1, {
-            SEND_MESSAGES: false,
-            ADD_REACTIONS: false,
-			READ_MESSAGES_HISTORY:false
-        });
-		});
-  }
      if (!muteRole1) return;
     var guild = message.channel.guild;
           var currentTime = new Date(),
-            Year = currentTime.getFullYear(),
+                   Year = currentTime.getFullYear(),
             Month = currentTime.getMonth() + 1,
             Day = currentTime.getDate(),
-            hours = currentTime.getHours() + 3 ,
+hours = currentTime.getHours() + 3 ,
             minutes = currentTime.getMinutes()+1,
             seconds = currentTime.getSeconds();
 
@@ -150,28 +141,30 @@ if(!muteRole1) {
      if (!muteRole1) return;
     var guild = message.channel.guild;
     message.guild.members.get(message.author.id).addRole(muteRole1);
-	setTimeout(function(){
-		    message.guild.members.get(message.author.id).removeRole(muteRole1);
-	},7200000);
+    
      var msg;
         msg = parseInt();
+      
       message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
+
 delete warn[message.author.id];
     delete user[message.author.id];
 	const embed500 = new Discord.RichEmbed()
-     .setTitle(`mark:  | There is someone trying `)
-      .setDescription(":white_check_mark:  | `There is someone trying to do spam`\n\nName:\n"+`${message.author.username}#${message.author.discriminator}`+"\nThe required procedures have been taken")      .setColor("ff0000")
+     .setTitle(`المرسل ${message.author.username}#${message.author.discriminator} `)
+      .setDescription(":white_check_mark:  | `محاولة السبام`\n\nالاسم:\n"+`${message.author.username}#${message.author.discriminator}`+"\nالعقوبة:\n  MuteChat / ميوت كتابي\n")
+      .setFooter("Anti - Spam")
+      .setColor("c91616")
     message.channel.send(embed500)
     	const embed20 = new Discord.RichEmbed()
-      .setTitle(":scales: | انت معاقب")
-      .setDescription(`**نم اعطائك ميوت **\n\nبواسطة:\n${client.user.tag}\n\n السبب:\nSpam Chat\n\nMuted Date:\n`+ Year + "/" + Month + "/" + Day +', '+hours +'-' +minutes+'-'+seconds+"\n \n \n`  \n\nسيتم فك الميوت خلال ساعتين`")
-          .setFooter(message.guild.iconURL)
-      .setColor("ff0000")
-
+      .setTitle(":scales: | تمت معاقبتك")
+      .setDescription(`**:small_blue_diamond:لقد قمت بمخالفة قوانين السيرفر**\n \n:gun: : نوع العقوبه\nMuteChat / ميوت كتابي\n:clock1: وقت وتاريخ العقوبه:\n`+ Year + "/" + Month + "/" + Day +', '+hours +'-' +minutes+'-'+seconds+"\n \n \n`في حال كانت العقوبة بالغلط, تواصل مع الادارة`")
+          .setFooter("Anti - Spam")
+      .setColor("c91616")
+    
      message.author.send(embed20)
-
+  
   }
-}); 
+});
 
 
 client.on ("guildMemberAdd", member => {
