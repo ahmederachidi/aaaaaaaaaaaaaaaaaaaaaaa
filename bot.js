@@ -9137,7 +9137,7 @@ client.on('message', message => {
 });
 
 
-const moment = require("moment")
+
 client.on("guildMemberAdd", m => {
     if (datediff(parseDate(moment(m.user.createdTimestamp).format('l')), parseDate(moment().format('l'))) < 35) {
         m.ban();
