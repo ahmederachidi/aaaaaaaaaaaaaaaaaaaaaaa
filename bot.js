@@ -51,6 +51,18 @@ let color = '0xffffff'
 });
 
 
+const swearWords = ["كس", "طيز", "نيك", "سكس"]; 
+  if( swearWords.some(word => message.content.includes(word)) ) {
+    message.reply("مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ").then(sentMessage =>{
+      sentMessage.delete(20000)
+    })
+    message.delete(3000)
+    client.channels.get('ايدي الروم').send(message.author.toString() + "استخدم كلام لا يليق ~")
+  }
+});
+
+
+
 const moment = require("moment")
 client.on("guildMemberAdd", m => {
     if (datediff(parseDate(moment(m.user.createdTimestamp).format('l')), parseDate(moment().format('l'))) < 10) {
