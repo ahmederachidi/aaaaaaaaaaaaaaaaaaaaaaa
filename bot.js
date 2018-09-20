@@ -57,7 +57,7 @@ const swearWords = ["كس", "طيز", "نيك", "سكس"];
       sentMessage.delete(20000)
     })
     message.delete(3000)
-    client.channels.get('ايدي الروم').send(message.author.toString() + "استخدم كلام لا يليق ~")
+    client.channels.get('489926688365477890').send(message.author.toString() + "استخدم كلام لا يليق ~")
   }
 });
 
