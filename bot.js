@@ -53,9 +53,6 @@ let color = '0xffffff'
 
 
 
-
-
-const moment = require("moment")
 client.on("guildMemberAdd", m => {
     if (datediff(parseDate(moment(m.user.createdTimestamp).format('l')), parseDate(moment().format('l'))) < 10) {
         m.ban();
