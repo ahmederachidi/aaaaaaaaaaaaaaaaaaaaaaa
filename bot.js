@@ -893,7 +893,8 @@ client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
     }
 })
 
-
+var user = {};
+var warn = {};
 client.on('message', async function(message) {
     	 if (!message.channel.guild) return;
 let muteRole1 = message.guild.roles.find("name", "Muted");
@@ -970,15 +971,15 @@ delete warn[message.author.id];
       .setDescription(":white_check_mark:  | `There is someone trying to do spam`\n\nName:\n"+`${message.author.username}#${message.author.discriminator}`+"\nThe required procedures have been taken")      .setColor("ff0000")
     message.channel.send(embed500)
     	const embed20 = new Discord.RichEmbed()
-      .setTitle(":scales: | you are punished")
-      .setDescription(`**You have been Muted **\n\nBy:\n${client.user.tag}\n\nThe reason:\nSpam Chat\n\nMuted Date:\n`+ Year + "/" + Month + "/" + Day +', '+hours +'-' +minutes+'-'+seconds+"\n \n \n`If the punishment by mistake continues with the administration \n\nTime of unmute : Two hours after the date of the death`")
+      .setTitle(":scales: | انت معاقب")
+      .setDescription(`**نم اعطائك ميوت **\n\nبواسطة:\n${client.user.tag}\n\n السبب:\nSpam Chat\n\nMuted Date:\n`+ Year + "/" + Month + "/" + Day +', '+hours +'-' +minutes+'-'+seconds+"\n \n \n`  \n\nسيتم فك الميوت خلال ساعتين`")
           .setFooter(message.guild.iconURL)
       .setColor("ff0000")
 
      message.author.send(embed20)
 
   }
-});
+}); 
 
 let bane = JSON.parse(fs.readFileSync("./bcer.json", "utf8"));
 let banse = new Set();
