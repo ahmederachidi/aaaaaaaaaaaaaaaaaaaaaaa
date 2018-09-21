@@ -52,59 +52,6 @@ let color = '0xffffff'
 
 
 
-client.on('messageDelete', msg => {
-    if (msg.channel.type !== "text") return
-    if (msg.channel.topic && msg.channel.topic.includes("hano-modlog")) return;
-    exports.fire(`**#${msg.channel.name} | ${msg.author.tag}'s message was deleted:** \`${msg.content}\``, msg.guild)
-})
- 
-client.on('messageUpdate', (msg, newMsg) => {
-    if (msg.content === newMsg.content) return
-    exports.fire(`**#${msg.channel.name} | ${msg.author.tag} edited their message:**\n**before:** \`${msg.content}\`\n**+after:** \`${newMsg.content}\``, msg.guild)
-})
- 
-client.on('guildMemberUpdate', (old, nw) => {
-    let txt
-    if (old.roles.size !== nw.roles.size) {
-        if (old.roles.size > nw.roles.size) {
-            //Taken
-            let dif = old.roles.filter(r => !nw.roles.has(r.id)).first()
-            txt = `**${nw.user.tag} | Role taken -> \`${dif.name}\`**`
-        } else if (old.roles.size < nw.roles.size) {
-            //Given
-            let dif = nw.roles.filter(r => !old.roles.has(r.id)).first()
-            txt = `**${nw.user.tag} | Role given -> \`${dif.name}\`**`
-        }
-    } else if (old.nickname !== nw.nickname) {
-        txt = `**${nw.user.tag} | Changed their nickname to -> \`${nw.nickname}\`**`
-    } else return
-    exports.fire(txt, nw.guild)
-})
- 
-client.on('roleCreate', (role) => {
-    exports.fire("**New role created**", role.guild)
-})
- 
-client.on('roleDelete', (role) => {
-    exports.fire("**Role deleted -> `" + role.name + "`**", role.guild)
-})
- 
-client.on('roleUpdate', (old, nw) => {
-    let txt
-    if (old.name !== nw.name) {
-        txt = `**${old.name} | Role name updated to -> \`${nw.name}\`**`
-    } else return
-    exports.fire(txt, nw.guild)
-})
- 
-client.on('guildBanAdd', (guild, user) => {
-    exports.fire(`**User banned -> \`${user.tag}\`**`, guild)
-})
- 
-client.on('guildBanRemove', (guild, user) => {
-    exports.fire(`**User unbanned -> \`${user.tag}\`**`, guild)
-})
-
 client.on('message', message => {
    if(message.content.startsWith(prefix + "invites")) {
     message.guild.fetchInvites().then(invs => {
@@ -205,7 +152,7 @@ message.channel.createWebhook(message.author.username, message.author.avatarURL)
 });
 
 client.on('message',message =>{
-    var prefix = "+";
+    var prefix = "!";
     if(message.content.startsWith(prefix + 'topinv')) {
   message.guild.fetchInvites().then(i =>{
   var invites = [];
