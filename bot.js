@@ -68,9 +68,7 @@ if (message.content.startsWith(prefix + 'credit')) {
   if(men) {
 message.channel.send(`** ${men.username}, :credit_card: balance` + " is `" + `${profile[men.id].credits}$` + "`.**")
 } else {
-  message.channel.send(`** ${message.author.username}, your :credit_card: balance` + " is `" + `${profile[message.author.id].credits}$` + "`.**")
-}
-}
+
  
 if(message.content.startsWith(prefix + "daily")) {
   if(profile[message.author.id].lastDaily != moment().format('day')) {
