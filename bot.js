@@ -10668,7 +10668,7 @@ message.member.removeRole(message.guild.roles.find("name", "100"));
 	}
   if (message.content === 'الوان') {
       if (!message.channel.guild) return;
-    message.channel.sendFile('https://cdn.discordapp.com/attachments/487242848513818625/494174616735055873/colors.png');
+    message.channel.sendFile('http://c.up-00.com/2018/09/153789195310461.png');
   }
 	
 });
