@@ -17319,7 +17319,7 @@ client.on("guildMemberAdd", member => {
       })
       
       }
-      });
+      
 
 
 
