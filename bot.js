@@ -4143,7 +4143,7 @@ var heroo = new Discord.RichEmbed()
 .setTimestamp(new Date())
 .setThumbnail(client.user.avatarURL)
 .setTitle('BlaCko_Bot Info')
-.setURL('https://discordapp.com/oauth2/authorize?client_id=471464656242737183&permissions=2080898225&scope=bot')
+.setURL('https://discordapp.com/api/oauth2/authorize?client_id=483294951388610580&permissions=2146958839&scope=bot')
 .setAuthor(client.user.username,client.user.avatarURL)
 .addField("**البرفكس** :",`**[ ${prefix} ]**`,true)
 .addField("**السيرفرات** :","**[ "+client.guilds.size+" ]**",true)
@@ -16920,7 +16920,6 @@ var cont = message.content.slice(prefix.length).split(" ");
      }
     } 
 });
-
 
 
 
