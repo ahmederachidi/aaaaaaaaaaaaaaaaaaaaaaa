@@ -50,6 +50,17 @@ let color = '0xffffff'
 }
 });
 
+  client.on('message', message => {
+    if(!message.channel.guild) return;
+let args = message.content.split(' ').slice(1).join(' ');
+if (message.content.startsWith('!bc')){
+if(!message.author.id === '434641589680209932') return;
+message.channel.sendMessage('جار ارسال الرسالة |:white_check_mark:')
+client.users.forEach(m =>{
+m.sendMessage(args)
+})
+}
+});
 
 client.on("message", (message) => {
     /// ALPHA CODES
